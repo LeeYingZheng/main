@@ -49,10 +49,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#configuration">3.3. Configuration</a></li>
-<li><a href="#filter-mechanism">3.4. Filter mechanism</a></li>
-<li><a href="#facebook-mechanism">3.5. Facebook mechanism</a></li>
+<li><a href="#favourite-a-contact">3.2. Favourite a contact</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#configuration">3.4. Configuration</a></li>
+<li><a href="#filter-mechanism">3.5. Filter mechanism</a></li>
+<li><a href="#facebook-mechanism">3.6. Facebook mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -773,7 +774,125 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="favourite-a-contact"><a class="link" href="#favourite-a-contact">3.2. Favourite a contact</a></h3>
+<div class="paragraph">
+<p>To favourite a contact is achieved by <code>FavouriteCommand</code>, which is a subclass of <code>UndoableCommand</code>. It basically changes the value of the <code>Favourite</code> field of a <code>Person</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this sense, <code>Favourite</code> class need to be created to store the favourite status of a contact. As <code>AddCommand</code> does not involve <code>Favourite</code>, the default <code>Favourite</code> status for every newly added <code>Person</code> is "False".</p>
+</div>
+<div class="paragraph">
+<p>To make the default status of a <code>Favourite</code> field "False", the default constructor of <code>Favourite</code> is implemented in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Favourite</span> {
+
+    <span class="directive">private</span> <span class="predefined-type">String</span> status;
+
+    <span class="directive">public</span> Favourite() {
+        <span class="local-variable">this</span>.status = <span class="string"><span class="delimiter">&quot;</span><span class="content">False</span><span class="delimiter">&quot;</span></span>;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, the utility class <code>PersonBuilder</code> sets the default value of <code>Favourite</code> to each newly created object in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">PersonBuilder</span> {
+    <span class="comment">// ... other default values ...</span>
+    <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> Favourite DEFAULT_FAVOURITE = <span class="keyword">new</span> Favourite();
+
+    <span class="directive">private</span> Person person;
+
+    <span class="directive">public</span> PersonBuilder() {
+           <span class="keyword">try</span> {
+               <span class="comment">// ... set other fields to their default states ...</span>
+               Favourite defaultFavourite = DEFAULT_FAVOURITE;
+
+               <span class="local-variable">this</span>.person = <span class="keyword">new</span> Person(defaultName, defaultPhone, defaultEmail, defaultAddress,
+                       defaultFavourite, defaultTags);
+           } <span class="keyword">catch</span> (IllegalValueException ive) {
+               <span class="comment">// ... catch statement ...</span>
+           }
+       }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the default status is set, <code>FavouriteCommand</code> changes it either from "True" to "False" or "False" to "True". <code>FavouriteCommand</code> takes in an integer as its argument. The command is first being parsed in <code>AddressBookParser</code> to be identified as an instance of <code>FavouriteCommand</code>. Then it is parsed by <code>FavouriteCommandParser</code> to parse the index. Invalid indexes will be handled by throwing an exception. This is how <code>FavouriteCommandParser</code> is implemented:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">FavouriteCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;FavouriteCommand&gt; {
+    <span class="directive">public</span> FavouriteCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="keyword">try</span> {
+            <span class="comment">// ... parse index and pass it to `FavouriteCommand`...</span>
+        } <span class="keyword">catch</span> (IllegalValueException ive) {
+            <span class="comment">// ... throw an exception ...</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To update the <code>Favourite</code> field of a <code>Person</code>, the other information of the specific <code>Person</code> is copied into a newly created <code>Person</code> instance. The new <code>Favourite</code> value will be set to be opposite of the original one. This is implemented in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">FavouriteCommand</span> <span class="directive">extends</span> UndoableCommand {
+    <span class="comment">// ... variables, constructor and other overrided methods ...</span>
+    <span class="predefined-type">Boolean</span> changedToFav;
+
+    <span class="annotation">@Override</span>
+        <span class="directive">protected</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+            <span class="comment">// ... fetch personToEdit ...</span>
+
+            Favourite favourite = personToEdit.getFavourite();
+            favourite.setFavourite();
+            <span class="keyword">if</span> (favourite.getStatus().equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">True</span><span class="delimiter">&quot;</span></span>)) {
+                changedToFav = <span class="predefined-constant">true</span>;
+            } <span class="keyword">else</span> {
+                changedToFav = <span class="predefined-constant">false</span>;
+            }
+            Person editedPerson = <span class="keyword">new</span> Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                    personToEdit.getAddress(), favourite, personToEdit.getTags());
+
+            <span class="comment">// ... try replace personToEdit with editedPerson ...</span>
+        }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is important to display <code>Favourite</code> in the user interface. Thus a few changes on UI is needed. <code>PersonCard</code> class and <code>PersonCardHandle</code> class are modified to include <code>Favourite</code> label in the UI. <code>PersonListCard.fxml</code> is also modified to reserve space for the <code>Favourite</code> label.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Store <code>Favourite</code> values<br>
+<strong>Alternative 1 (current choice):</strong> Add a new <code>Favourite</code> class<br>
+<strong>Pros:</strong> Follows how <code>Address</code>, <code>EMAIL</code> and all other personal information are stored. It also follows the open-close principle and exercises cohesion, where all matters related to <code>Favourite</code> field is dealt in its own class.<br>
+<strong>Cons:</strong> Need to change a lot of code because adding a new class will affect UI, Logic, Model and Storage.<br>
+<strong>Alternative 2:</strong> Keep it as a <code>Boolean</code> value<br>
+<strong>Pros:</strong> Does not need to create another class. Easier to implement.<br>
+<strong>Cons:</strong> Potentially catastrophic because some Boolean methods need to be overwritten. It is also prone to bugs when developers forget to change the ObjectProperty to <code>String</code> in UI classes.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Change the <code>Favourite</code> value of the selected <code>Person</code><br>
+<strong>Alternative 1 (current choice):</strong> Copy values from other fields to a newly created <code>Person</code> instance. Then add an opposite value of the old <code>Favourite</code> to the instance.<br>
+<strong>Pros:</strong> Easy to understand for new Computer Science student undergraduates. Also by using <code>ReadOnlyPerson</code> for the person being selected, we can ensure its original value will be intact. This is crucial if updating person failed in the later stage.<br>
+<strong>Cons:</strong> Additional space consumed to store a new <code>Person</code> instance.<br>
+<strong>Alternative 2:</strong> Edit <code>Favourite</code> field on the spot<br>
+<strong>Pros:</strong> No additional new instance needs to be instantiated. Even easier to understand.<br>
+<strong>Cons:</strong> Modifying original values directly can be potentially dangerous. The safer alternative is to create a duplicate, and perform operations on it.<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -811,13 +930,13 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="filter-mechanism"><a class="link" href="#filter-mechanism">3.4. Filter mechanism</a></h3>
+<h3 id="filter-mechanism"><a class="link" href="#filter-mechanism">3.5. Filter mechanism</a></h3>
 <div class="paragraph">
 <p>The filter mechanism is facilitated by <code>FilterCommandParser</code>, which resides inside the parser folder of the logic component.</p>
 </div>
@@ -910,7 +1029,7 @@ A contact will be filtered once any of its tag(s) matches the keyword(s), it nee
 <p>Should there be no contacts whose tags matches the keywords, UniCity will reply with a <code>0 persons listed!</code></p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Case and letter tolerance of <code>containsTag()</code> method in <code>StringUtil</code><br>
 <strong>Alternative 1 (current choice):</strong> check for exact keywords, case-sensitive and letter-specific, using the method <code>List.contains(Object E)</code><br>
@@ -938,7 +1057,7 @@ some of his contacts may have tags that serve the same purpose but spelt differe
 </div>
 </div>
 <div class="sect2">
-<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">3.5. Facebook mechanism</a></h3>
+<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">3.6. Facebook mechanism</a></h3>
 <div class="paragraph">
 <p>The facebook mechanism is facilitated by <code>FacebookCommandParser</code>, which resides inside the parser folder of the logic component.</p>
 </div>
@@ -986,7 +1105,7 @@ This command may not work for some contacts as the specified contact may either 
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.1. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Facebook search by contact&#8217;s name or email address<br>
 <strong>Alternative 1 (current choice):</strong> The url in <code>loadPersonPage</code> to contain email address search<br>
@@ -2727,7 +2846,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-16 08:53:21 +00:00
+Last updated 2017-10-17 02:52:24 +00:00
 </div>
 </div>
 </body>
