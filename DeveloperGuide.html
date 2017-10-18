@@ -53,7 +53,8 @@
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#configuration">3.4. Configuration</a></li>
 <li><a href="#filter-mechanism">3.5. Filter mechanism</a></li>
-<li><a href="#facebook-mechanism">3.6. Facebook mechanism</a></li>
+<li><a href="#sorting-mechanism">3.6. Sorting mechanism</a></li>
+<li><a href="#facebook-mechanism">3.7. Facebook mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1057,7 +1058,131 @@ some of his contacts may have tags that serve the same purpose but spelt differe
 </div>
 </div>
 <div class="sect2">
-<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">3.6. Facebook mechanism</a></h3>
+<h3 id="sorting-mechanism"><a class="link" href="#sorting-mechanism">3.6. Sorting mechanism</a></h3>
+<div class="paragraph">
+<p>The sorting mechanism is achieved by the <code>SortCommand</code>. In order to sort the list of contacts, the default constructor of <code>SortCommand</code> creates an empty editable array list of contacts as shown below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>private ArrayList&lt;ReadOnlyPerson&gt; contactList;
+public SortCommand() {
+    contactList = new ArrayList&lt;&gt;();
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The new list will take in a list of contacts from address book, sort them and overwrites the existing list of contacts in address book sorted by alphabetical order.</p>
+</div>
+<div class="paragraph">
+<p>The <code>SortCommand</code> inherits from <code>Command</code> instead of <code>UndoableCommands</code> as explained by the Undo/Redo mechanism earlier. There is no mechanism for sorting to be undone.</p>
+</div>
+<div class="paragraph">
+<p>The <code>SortCommand</code> is implemented in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SortCommand</span> <span class="directive">extends</span> Command {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() {
+        <span class="comment">// ... sort logic ....</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the command word <code>sort</code> or <code>st</code> is typed into UniCity, <code>AddressBookParser</code> will call <code>SortCommandParser</code>.</p>
+</div>
+<div class="paragraph">
+<p>Upon activating the application, an editable contactList containing ReadOnlyPerson will be empty at the beginning.</p>
+</div>
+<div class="paragraph">
+<p>When the user executes <code>SortCommand</code>, <code>sort</code> or <code>st</code>, to sort the list of contacts in address book. The current empty ArrayList of contactList will be sent to the model &#8230;&#8203;&#8230;&#8203;..</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the sort operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortCommandSequenceDiagram.png" alt="SortCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="predefined-type">Boolean</span> sortPersonByName(<span class="predefined-type">ArrayList</span>&lt;ReadOnlyPerson&gt; contactList) {
+
+    <span class="comment">//check the condition of the list of contacts in addressbook currently</span>
+    <span class="comment">//different Boolean value will be returned depending on the order of the contacts</span>
+    <span class="keyword">if</span> (filteredPersons.size() == <span class="integer">0</span>) {
+        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+    contactList.addAll(filteredPersons);
+    <span class="predefined-type">Collections</span>.sort(contactList, <span class="predefined-type">Comparator</span>.comparing(p -&gt; p.toString().toLowerCase()));
+
+    <span class="keyword">if</span> (contactList.equals(filteredPersons)) {
+        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+    }
+    <span class="keyword">try</span> {
+        addressBook.setPersons(contactList);
+        indicateAddressBookChanged();
+    }
+    <span class="comment">//...exceptions caught...</span>
+
+    <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Upon successful sorting, the <code>SortCommand</code> will correctly sort the contacts in alphabetical order and display under the contact column.</p>
+</div>
+<div class="paragraph">
+<p>If there is an empty list, the address book will reply with <code>No contact to be sorted.</code><br>
+If the list is in correct order, the address book will reply with <code>Already sorted.</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The sorting process is case insensitive.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.1. Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>SortCommand</code><br>
+<strong>Alternative 1 (current choice):</strong> The <code>SortCommand</code> will inherit directly from <code>Command</code> without the undo/redo mechanism.<br>
+<strong>Pros:</strong> After user finished sorting his list of contacts, it will remain sorted without going back to the original list. <br>
+<strong>Cons:</strong> The user cannot obtain the list of contacts with the original order<br>
+<strong>Alternative 2:</strong> Implement undo function for <code>SortCommand</code><br>
+<strong>Pros:</strong> Everything will return to the original order when undo is applied.<br>
+<strong>Cons:</strong> It may be troublesome for the user as he may want to undo a delete/add function but the list of contacts becomes unsorted and he must sort again.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How sorting executes<br>
+<strong>Alternative 1 (current choice):</strong> Using the in build function in collections to sort the arrays according to alphabetical order.<br>
+<strong>Pros:</strong> This method is straightforward and easy to implement.<br>
+<strong>Cons:</strong> The algorithm is in built so it is harder to debug if something went wrong.<br>
+<strong>Alternative 2:</strong> Write my own sorting algorithm.<br>
+<strong>Pros:</strong> Can cater to case sensitivity and other exceptions of the list when sorting is involved.<br>
+<strong>Cons:</strong> More prone to error and it may not be straightforward.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Data structure to support the sort command<br>
+<strong>Alternative 1 (current choice):</strong> Create an empty array list to obtain the values from the contact list and sort the contacts. It will overwrite the existing array list of unsorted contacts when sorted.<br>
+<strong>Pros:</strong> Easier to understand. The origin list of contacts are not changed to prevent any unexpected mistake from occurring.<br>
+<strong>Cons:</strong> May have performance issues due to additional memory usage and longer time taken to overwrite the given list of contacts.<br>
+<strong>Alternative 2:</strong> Edit the current list of contact list directly by adding a function to the Address Book class.<br>
+<strong>Pros:</strong> Less time and space consuming as sorting is achieved in a single array.<br>
+<strong>Cons:</strong> There is no way to obtain the origin list of contacts for other functions. If a mistake is made, the original list of contacts will be compromised. Need to update all classes that inherits from Address Book class as well which may be confusing.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">3.7. Facebook mechanism</a></h3>
 <div class="paragraph">
 <p>The facebook mechanism is facilitated by <code>FacebookCommandParser</code>, which resides inside the parser folder of the logic component.</p>
 </div>
@@ -1105,7 +1230,7 @@ This command may not work for some contacts as the specified contact may either 
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.7.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Facebook search by contact&#8217;s name or email address<br>
 <strong>Alternative 1 (current choice):</strong> The url in <code>loadPersonPage</code> to contain email address search<br>
@@ -2846,7 +2971,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-18 03:35:59 +00:00
+Last updated 2017-10-18 06:12:16 +00:00
 </div>
 </div>
 </body>
