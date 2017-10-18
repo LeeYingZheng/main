@@ -55,6 +55,7 @@
 <li><a href="#filter-mechanism">3.5. Filter mechanism</a></li>
 <li><a href="#sorting-mechanism">3.6. Sorting mechanism</a></li>
 <li><a href="#facebook-mechanism">3.7. Facebook mechanism</a></li>
+<li><a href="#add-remove-tag-mechanism">3.8. Add/Remove Tag mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1240,7 +1241,123 @@ This command may not work for some contacts as the specified contact may either 
 <strong>Pros:</strong> With the contact&#8217;s full name, there is a chance of finding the contact on Facebook. Accounts for contacts who do not have an account with the same email address.<br>
 <strong>Cons:</strong> Facebook search by name may return a broader result as there are more Facebook users who share similar names. This contributes to an inaccurate result.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-remove-tag-mechanism"><a class="link" href="#add-remove-tag-mechanism">3.8. Add/Remove Tag mechanism</a></h3>
+<div class="paragraph">
+<p>The add/remove tag mechanism is facilitated by the <code>FilteredList</code>, which resides in the <code>ModelManager</code>. It inherits
+from the <code>UndoableCommand</code> and is similar to the add/delete person function but deals with tags instead.</p>
+</div>
+<div class="paragraph">
+<p>The mechanism performs an addition or removal of a tag using a list of target indexes that is within the range of the
+default list and a tag to add/remove. By using the <code>FilteredList</code>, addition and removal of tags when the list is
+unfiltered or filtered by other commands such as the find command is possible. Furthermore tags can be added to/removed
+from multiple people at once.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user wants to add the tag "friends" to the first two persons in the list. The user will execute the
+<code>AddTagCommand</code>, addtag 1 2 t/friends, to add the tag "friends" to the 1st and 2nd person in the last person indexing
+of UniCity. The same can be done to remove the tags as illustrated by the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddRemoveTag.png" alt="AddRemoveTag" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the given indexes are out of bounds, the <code>AddTagCommand</code> and <code>RemoveTagCommand</code> will throw an exception
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the add tag operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddTagSdLogic.png" alt="AddTagSdLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The remove tag command works in the same way but with a different command name instead.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the tag to remove doesn&#8217;t exist, <code>RemoveTagCommand</code> will throw an exception while <code>AddTagCommand</code> will throw an
+exception if the tag exists in every person in the given list of indexes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>addTag</code> method of the <code>ModelManager</code> goes through each person in the list and adds the tag to each of them and
+updates them. This works the same for the <code>removeTag</code> method. After which it raises the <code>indicateAddressBookChanged</code>
+event which triggers the storage component to save this change. Note that by indicating an event instead of directly
+calling the storage component, coupling is reduced. The implementation of <code>addTag</code> is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">        <span class="comment">/**
+         * Adds given tag to the given indexes of the target persons shown in the last person listing.
+         */</span>
+        <span class="annotation">@Override</span>
+        <span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addTag(<span class="predefined-type">ArrayList</span>&lt;Index&gt; targetIndexes, Tag toAdd) <span class="directive">throws</span> PersonNotFoundException,
+                DuplicatePersonException {
+            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; targetIndexes.size(); i++) {
+                <span class="type">int</span> targetIndex = targetIndexes.get(i).getZeroBased();
+                ReadOnlyPerson oldPerson = <span class="local-variable">this</span>.getFilteredPersonList().get(targetIndex);
+
+                Person newPerson = <span class="keyword">new</span> Person(oldPerson);
+                <span class="predefined-type">Set</span>&lt;Tag&gt; newTags = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;Tag&gt;(newPerson.getTags());
+                newTags.add(toAdd);
+                newPerson.setTags(newTags);
+
+                addressBook.updatePerson(oldPerson, newPerson);
+                indicateAddressBookChanged();
+            }
+        }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.8.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of the <code>addTag</code> and <code>removeTag</code> method<br>
+<strong>Alternative 1 (current choice):</strong> Implement the methods in <code>ModelManager</code>.<br>
+<strong>Pros:</strong>  Easier to implement since <code>ModelManager</code> has access to all the required methods and variables.<br>
+<strong>Cons:</strong> Hard for new developers to understand how it works as a large amount of code in the many layers of the Model
+component must be read to understand the mechanism.<br>
+<strong>Alternative 2:</strong> Implement the <code>addTag</code> and <code>removeTag</code> method inside <code>AddTagCommand</code> and <code>RemoveTagCommand</code>
+respectively.<br>
+<strong>Pros:</strong> Easier for new developers to understand.<br>
+<strong>Cons:</strong> Involves replication of code, violating the DRY principle. Furthermore, it violates the Single Responsibility
+Principle and the Separation of Concerns as <code>AddTagCommand</code> and <code>RemoveTagCommand</code> must now update the person and
+raise the address book changed event.</p>
+</div>
 <hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Type of command<br>
+<strong>Alternative 1 (current choice):</strong> Implement the command as an <code>UndoableCommand</code>.<br>
+<strong>Pros:</strong> More intuitive for the user to type undo when he makes the mistake.<br>
+<strong>Cons:</strong> New developers must understand the template pattern before they can understand these commands.<br>
+<strong>Alternative 2:</strong> Implement the command as a normal <code>Command</code>.<br>
+<strong>Pros:</strong> Allows the user to undo a previous add/remove by clicking the up button to bring up the previous command and
+then changing the first letter since the shortcut command for <code>AddTagCommand</code> and <code>RemoveTagCommand</code> is "at" and "rt"
+respectively.<br>
+<strong>Cons:</strong> Less intuitive for the user and is not consistent with the design that commands that modify data should be
+undoable.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1258,7 +1375,8 @@ This command may not work for some contacts as the specified contact may either 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides more flexibility in formatting.
+We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides
+more flexibility in formatting.
 </td>
 </tr>
 </table>
@@ -2971,7 +3089,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-18 06:12:16 +00:00
+Last updated 2017-10-18 06:30:55 +00:00
 </div>
 </div>
 </body>
