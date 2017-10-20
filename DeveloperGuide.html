@@ -49,7 +49,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#favourite-a-contact">3.2. Favourite a contact</a></li>
+<li><a href="#favourite-mechanism">3.2. Favourite mechanism</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#configuration">3.4. Configuration</a></li>
 <li><a href="#filter-mechanism">3.5. Filter mechanism</a></li>
@@ -776,12 +776,20 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-a-contact"><a class="link" href="#favourite-a-contact">3.2. Favourite a contact</a></h3>
+<h3 id="favourite-mechanism"><a class="link" href="#favourite-mechanism">3.2. Favourite mechanism</a></h3>
 <div class="paragraph">
 <p>To favourite a contact is achieved by <code>FavouriteCommand</code>, which is a subclass of <code>UndoableCommand</code>. It basically changes the value of the <code>Favourite</code> field of a <code>Person</code>.</p>
 </div>
 <div class="paragraph">
 <p>In this sense, <code>Favourite</code> class need to be created to store the favourite status of a contact. As <code>AddCommand</code> does not involve <code>Favourite</code>, the default <code>Favourite</code> status for every newly added <code>Person</code> is "False".</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how a <code>FavouriteCommand</code> is processed:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FavouriteSequenceDiagram.png" alt="FavouriteSequenceDiagram" width="800">
+</div>
 </div>
 <div class="paragraph">
 <p>To make the default status of a <code>Favourite</code> field "False", the default constructor of <code>Favourite</code> is implemented in this way:</p>
@@ -3089,7 +3097,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 17:46:19 +00:00
+Last updated 2017-10-20 18:04:45 +00:00
 </div>
 </div>
 </body>
