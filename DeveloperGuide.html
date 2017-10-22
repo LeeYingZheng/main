@@ -2321,6 +2321,18 @@ for <code>RemarkCommandParser</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort my contacts in alphabetical order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can find my contacts easier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caring user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add birthday to my close friends</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">celebrate their birthday with them</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">lazy user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">type shorter commands while ignoring their cases</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">access my friends' contact information faster</p></td>
@@ -2678,6 +2690,56 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-sort-all-contacts" class="discrete">Use case: Sort all contacts</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to sort all persons in the list.</p>
+</li>
+<li>
+<p>UniCity displays a list of every person sorted by name.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. UniCity displays a message on empty list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2a. The list is already sorted in order.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a1. UniCity displays a message on about the sorted list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-undo-an-action" class="discrete">Use case: Undo an action</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2762,6 +2824,76 @@ for <code>RemarkCommandParser</code>.</p>
 <p>2a1. UniCity displays a failure message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-add-birthday-to-a-contact" class="discrete">Use case: Add birthday to a contact</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list persons.</p>
+</li>
+<li>
+<p>UniCity shows a list of persons.</p>
+</li>
+<li>
+<p>User requests to add birthday to a specific contact in the list.</p>
+</li>
+<li>
+<p>UniCity adds the birthday of that contact to the field.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. the list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. the given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. UniCity displays an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. the given birthday is invalid format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. UniCity shows an error message and a sample input.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
@@ -3097,7 +3229,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 04:12:49 +00:00
+Last updated 2017-10-22 10:21:12 +00:00
 </div>
 </div>
 </body>

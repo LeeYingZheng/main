@@ -41,11 +41,12 @@
 <li><a href="#listing-entered-commands-code-history-code">2.12. Listing entered commands : <code>history</code></a></li>
 <li><a href="#undoing-previous-command-code-undo-code">2.13. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">2.14. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#add-a-tag-to-select-persons-code-addtag-code">2.15. Add a tag to select persons : <code>addtag</code></a></li>
-<li><a href="#remove-a-tag-from-select-persons-code-removetag-code">2.16. Remove a tag from select persons : <code>removetag</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.17. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.19. Saving the data</a></li>
+<li><a href="#add-a-birthday-to-select-person-code-birthday-code">2.15. Add a birthday to select person : <code>birthday</code></a></li>
+<li><a href="#add-a-tag-to-select-persons-code-addtag-code">2.16. Add a tag to select persons : <code>addtag</code></a></li>
+<li><a href="#remove-a-tag-from-select-persons-code-removetag-code">2.17. Remove a tag from select persons : <code>removetag</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">2.18. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.19. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.20. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#coming-in-v2-0">3. Coming in v2.0</a>
@@ -613,7 +614,51 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#add-a-tag-to-select-persons-code-addtag-code">2.15. Add a tag to select persons : <code>addtag</code></a></h3>
+<h3 id="add-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#add-a-birthday-to-select-person-code-birthday-code">2.15. Add a birthday to select person : <code>birthday</code></a></h3>
+<div class="paragraph">
+<p>Adds the given birthday to the specified persons .<br>
+Format: <code>birthday INDEX b/BIRTHDAY&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The birthday is case-sensitive.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The birthday <strong>must be in positive intgers</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The birthday <strong>must be 4- 8 integers long</strong> 2110, 211095, 21101995, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>birthday 1 b/211095</code><br>
+Adds the birthday "211095" to the 1st person in the address book.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#add-a-tag-to-select-persons-code-addtag-code">2.16. Add a tag to select persons : <code>addtag</code></a></h3>
 <div class="paragraph">
 <p>Adds the given tag to the specified persons .<br>
 Format: <code>addtag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
@@ -657,7 +702,7 @@ Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>f
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#remove-a-tag-from-select-persons-code-removetag-code">2.16. Remove a tag from select persons : <code>removetag</code></a></h3>
+<h3 id="remove-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#remove-a-tag-from-select-persons-code-removetag-code">2.17. Remove a tag from select persons : <code>removetag</code></a></h3>
 <div class="paragraph">
 <p>Removes the given tag from the specified persons .<br>
 Format: <code>removetag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
@@ -701,21 +746,21 @@ Removes the tag "classmate" from the 2nd and 5th person in the results of the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.17. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.18. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.18. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.19. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.20. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -817,7 +862,7 @@ e.g. <code>find James Jake</code></p>
 e.g.<code>select 2</code></p>
 </li>
 <li>
-<p><strong>Sort</strong> : 'sort'</p>
+<p><strong>Sort</strong> : <code>sort</code></p>
 </li>
 <li>
 <p><strong>History</strong> : <code>history</code></p>
@@ -829,7 +874,15 @@ e.g.<code>select 2</code></p>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
-<p><strong>RemoveTag</strong> : <code>removetag</code><br>
+<p><strong>Birthday</strong> : <code>birthday INDEX b/BIRTHDAY</code><br>
+e.g. <code>birthday 2 b/240596</code></p>
+</li>
+<li>
+<p><strong>AddTag</strong> : <code>addtag [INDEX] [MORE_INDEXES] [t/TAG]</code><br>
+e.g. <code>addtag 3 7 t/friend</code></p>
+</li>
+<li>
+<p><strong>RemoveTag</strong> : <code>removetag [INDEX] [MORE_INDEXES] [t/TAG]</code><br>
 e.g. <code>removetag 3 7 t/lecturer</code></p>
 </li>
 </ul>
@@ -839,7 +892,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 04:12:49 +00:00
+Last updated 2017-10-22 10:21:12 +00:00
 </div>
 </div>
 </body>
