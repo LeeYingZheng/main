@@ -28,40 +28,24 @@
 <li><a href="#features">2. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#starring-a-person-code-favourite-code">2.5. Starring a person : <code>favourite</code></a></li>
-<li><a href="#filtering-persons-by-favourite-status-code-showfavourite-code">2.6. Filtering persons by favourite status : <code>showfavourite</code></a></li>
-<li><a href="#filtering-persons-by-tags-code-filter-code">2.7. Filtering persons by tags: <code>filter</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">2.8. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">2.9. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">2.10. Selecting a person : <code>select</code></a></li>
-<li><a href="#sorting-a-person-code-sort-code">2.11. Sorting a person : <code>sort</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">2.12. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">2.13. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.14. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#add-a-birthday-to-select-person-code-birthday-code">2.15. Add a birthday to select person : <code>birthday</code></a></li>
-<li><a href="#add-a-tag-to-select-persons-code-addtag-code">2.16. Add a tag to select persons : <code>addtag</code></a></li>
-<li><a href="#remove-a-tag-from-select-persons-code-removetag-code">2.17. Remove a tag from select persons : <code>removetag</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.18. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.19. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.20. Saving the data</a></li>
+<li><a href="#viewing-contacts">2.2. Viewing Contacts</a></li>
+<li><a href="#contacts-modification">2.3. Contacts Modification</a></li>
+<li><a href="#web-services">2.4. Web Services</a></li>
+<li><a href="#command-sequence-and-history">2.5. Command Sequence and History</a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.6. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.7. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#coming-in-v2-0">3. Coming in v2.0</a>
 <ul class="sectlevel2">
 <li><a href="#log-in-window-for-a-user">3.1. Log in window for a user</a></li>
-<li><a href="#unicity-as-an-online-application">3.2. UniCity as an online application</a></li>
-<li><a href="#database-to-check-for-unicity-users">3.3. Database to check for UniCity users</a></li>
-<li><a href="#facebook-command-to-search-for-contacts-on-facebook">3.4. Facebook command to search for contacts on Facebook</a></li>
-<li><a href="#automatic-pop-up-help-window-for-new-users">3.5. Automatic pop-up help window for new users</a></li>
-<li><a href="#event-reminders-for-a-person">3.6. Event reminders for a person</a></li>
-<li><a href="#changing-wallpaper-of-the-background-of-unicity">3.7. Changing wallpaper of the background of UniCity</a></li>
-<li><a href="#auto-completion-through-command-history">3.8. Auto-completion through command history</a></li>
-<li><a href="#suggestions-when-typing-a-name-in-find-command">3.9. Suggestions when typing a name in find command</a></li>
-<li><a href="#group-contacts-by-their-courses-of-study">3.10. Group contacts by their courses of study</a></li>
-<li><a href="#memories">3.11. Memories</a></li>
+<li><a href="#automatic-pop-up-help-window-for-new-users">3.2. Automatic pop-up help window for new users</a></li>
+<li><a href="#event-reminders-for-a-person">3.3. Event reminders for a person</a></li>
+<li><a href="#changing-wallpaper-of-the-background-of-unicity">3.4. Changing wallpaper of the background of UniCity</a></li>
+<li><a href="#auto-completion-through-command-history">3.5. Auto-completion through command history</a></li>
+<li><a href="#suggestions-when-typing-a-name-in-find-command">3.6. Suggestions when typing a name in find command</a></li>
+<li><a href="#group-contacts-by-their-courses-of-study">3.7. Group contacts by their courses of study</a></li>
+<li><a href="#memories">3.8. Memories</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -166,161 +150,19 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></h3>
+<h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">2.2. Viewing Contacts</a></h3>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+<p>This section lists commands that view a part of UniCity&#8217;s contact list.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
-</li>
-<li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></h3>
+<div class="sect3">
+<h4 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">2.2.1. Listing all persons : <code>list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all persons in the address book.<br>
 Format: <code>list</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></h3>
-<div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="starring-a-person-code-favourite-code"><a class="link" href="#starring-a-person-code-favourite-code">2.5. Starring a person : <code>favourite</code></a></h3>
-<div class="paragraph">
-<p>Change the <code>favourite</code> status of an existing person in the address book.<br>
-Format: <code>favourite INDEX</code> OR <code>fav INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Modify the <code>favourite</code> field of the person with the input index.</p>
-</li>
-<li>
-<p>If the person is a favourite person, change the <code>favourite</code> status "False".</p>
-</li>
-<li>
-<p>If the person is not a favourite person, mark it as favourite.</p>
-</li>
-<li>
-<p>The index number refers to the order in the latest list.</p>
-</li>
-<li>
-<p>The index number must be a positive integer and cannot exceed the length of the latest list.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>favourite 1</code><br>
-Changes the <code>favourite</code> status of the 1st person in the latest list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="filtering-persons-by-favourite-status-code-showfavourite-code"><a class="link" href="#filtering-persons-by-favourite-status-code-showfavourite-code">2.6. Filtering persons by favourite status : <code>showfavourite</code></a></h3>
-<div class="paragraph">
-<p>Show all favourite persons.<br>
-Format: <code>showfavourite</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Every person with <code>favourite</code> status "True" will be listed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>showfavourite</code><br>
-Shows a list of all favourite persons.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="filtering-persons-by-tags-code-filter-code"><a class="link" href="#filtering-persons-by-tags-code-filter-code">2.7. Filtering persons by tags: <code>filter</code></a></h3>
+<div class="sect3">
+<h4 id="filtering-persons-by-tags-code-filter-code"><a class="link" href="#filtering-persons-by-tags-code-filter-code">2.2.2. Filtering persons by tags: <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters persons whose tags contain any of the given keywords.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -364,8 +206,8 @@ Returns any person having at least a <code>[professor]</code> or <code>[tutor]</
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">2.8. Locating persons by name: <code>find</code></a></h3>
+<div class="sect3">
+<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">2.2.3. Locating persons by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -409,8 +251,305 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">2.2.4. Sorting a person : <code>sort</code></a></h4>
+<div class="paragraph">
+<p>Sort the list of contacts in addressbook by name.<br>
+Format: <code>sort</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Sort the list of contacts according to alphabetical order.</p>
+</li>
+<li>
+<p>The names sorted will be case-insensitive.</p>
+</li>
+<li>
+<p>If there is no contacts in the list, nothing will be sorted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>select 2</code><br>
+Selects the 2nd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>select 1</code><br>
+Selects the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.9. Deleting a person : <code>delete</code></a></h3>
+<h3 id="contacts-modification"><a class="link" href="#contacts-modification">2.3. Contacts Modification</a></h3>
+<div class="paragraph">
+<p>This section lists commands that modify UniCity&#8217;s contact list.</p>
+</div>
+<div class="sect3">
+<h4 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.3.1. Adding a person: <code>add</code></a></h4>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.3.2. Editing a person : <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Edits an existing person in the address book.<br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower t/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">2.3.3. Editing a person : <code>favourite</code></a></h4>
+<div class="paragraph">
+<p>Change the <code>favourite</code> status of an existing person in the address book.<br>
+Format: <code>favourite INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Modify the <code>favourite</code> field of the person with the input index.</p>
+</li>
+<li>
+<p>If the person is a favourite person, change the <code>favourite</code> status "False".</p>
+</li>
+<li>
+<p>If the person is not a favourite person, mark it as favourite.</p>
+</li>
+<li>
+<p>The index number refers to the order in the latest list.</p>
+</li>
+<li>
+<p>The index number must be a positive integer and cannot exceed the length of the latest list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>favourite 1</code><br>
+Changes the <code>favourite</code> status of the 1st person in the latest list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#adding-a-birthday-to-select-person-code-birthday-code">2.3.4. Adding a birthday to select person : <code>birthday</code></a></h4>
+<div class="paragraph">
+<p>Adds the given birthday to the specified persons .<br>
+Format: <code>birthday INDEX b/BIRTHDAY&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The birthday is case-sensitive.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The birthday <strong>must be in positive intgers</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The birthday <strong>must be 4- 8 integers long</strong> 2110, 211095, 21101995, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>birthday 1 b/211095</code><br>
+Adds the birthday "211095" to the 1st person in the address book.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">2.3.5. Adding a tag to select persons : <code>addtag</code></a></h4>
+<div class="paragraph">
+<p>Adds the given tag to the specified persons .<br>
+Format: <code>addtag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds the tag to every person specified by the <code>INDEXES</code>.</p>
+</li>
+<li>
+<p>The tag is case-sensitive.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>addtag 1 2 3 t/friends</code><br>
+Adds the tag "friends" to the 1st, 2nd and 3rd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>addtag 2 5 t/classmate</code><br>
+Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">2.3.6. Removing a tag from select persons : <code>removetag</code></a></h4>
+<div class="paragraph">
+<p>Removes the given tag from identified person by the list of index numbers used in the last person .<br>
+Format: <code>removetag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes the tag from every person specified by the <code>INDEXES</code>.</p>
+</li>
+<li>
+<p>The tag is case-sensitive.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>removetag 1 2 3 t/friends</code><br>
+Removes the tag "friends" from 1st, 2nd and 3rd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>removetag 2 5 t/classmate</code><br>
+Removes the tag "classmate" from the 2nd and 5th person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.3.7. Deleting a person : <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
@@ -450,8 +589,21 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.3.8. Clearing all entries : <code>clear</code></a></h4>
+<div class="paragraph">
+<p>Clears all entries from the address book.<br>
+Format: <code>clear</code></p>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.10. Selecting a person : <code>select</code></a></h3>
+<h3 id="web-services"><a class="link" href="#web-services">2.4. Web Services</a></h3>
+<div class="paragraph">
+<p>This section lists commands that require the Internet to provide services. Ensure Internet connection is established before entering these commands.</p>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.4.1. Selecting a person : <code>select</code></a></h4>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select INDEX</code></p>
@@ -490,33 +642,43 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/select-command-ui.png" alt="select command ui" width="790">
 </div>
-<div class="sect2">
-<h3 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">2.11. Sorting a person : <code>sort</code></a></h3>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logging-in-to-facebook-code-facebook-code"><a class="link" href="#logging-in-to-facebook-code-facebook-code">2.4.2. Logging in to Facebook : <code>facebook</code></a></h4>
 <div class="paragraph">
-<p>Sort the list of contacts in addressbook by name.<br>
-Format: <code>sort</code></p>
+<p>Shows the log in page for Facebook.<br>
+Format: <code>facebook</code> or 'fb'</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Sort the list of contacts according to alphabetical order.</p>
-</li>
-<li>
-<p>The names sorted will be case-insensitive.</p>
-</li>
-<li>
-<p>If there is no contacts in the list, nothing will be sorted.</p>
+<p>Allows person to log in to his Facebook Account using the Graphical Interface available.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/facebook-command-ui.png" alt="facebook command ui" width="790">
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.12. Listing entered commands : <code>history</code></a></h3>
+<h3 id="command-sequence-and-history"><a class="link" href="#command-sequence-and-history">2.5. Command Sequence and History</a></h3>
+<div class="paragraph">
+<p>This section lists commands that toggle with the past and present commands entered in UniCity.</p>
+</div>
+<div class="sect3">
+<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.5.1. Listing entered commands : <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -536,8 +698,8 @@ Format: <code>history</code></p>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.13. Undoing previous command : <code>undo</code></a></h3>
+<div class="sect3">
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.5.2. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -581,8 +743,8 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.14. Redoing the previously undone command : <code>redo</code></a></h3>
+<div class="sect3">
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.5.3. Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -613,154 +775,16 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="add-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#add-a-birthday-to-select-person-code-birthday-code">2.15. Add a birthday to select person : <code>birthday</code></a></h3>
-<div class="paragraph">
-<p>Adds the given birthday to the specified persons .<br>
-Format: <code>birthday INDEX b/BIRTHDAY&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The birthday is case-sensitive.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the most recent listing.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>The birthday <strong>must be in positive intgers</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>The birthday <strong>must be 4- 8 integers long</strong> 2110, 211095, 21101995, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>birthday 1 b/211095</code><br>
-Adds the birthday "211095" to the 1st person in the address book.</p>
-</li>
-</ul>
-</div>
 </div>
 <div class="sect2">
-<h3 id="add-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#add-a-tag-to-select-persons-code-addtag-code">2.16. Add a tag to select persons : <code>addtag</code></a></h3>
-<div class="paragraph">
-<p>Adds the given tag to the specified persons .<br>
-Format: <code>addtag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Adds the tag to every person specified by the <code>INDEXES</code>.</p>
-</li>
-<li>
-<p>The tag is case-sensitive.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the most recent listing.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>addtag 1 2 3 t/friends</code><br>
-Adds the tag "friends" to the 1st, 2nd and 3rd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>addtag 2 5 t/classmate</code><br>
-Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>find</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="remove-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#remove-a-tag-from-select-persons-code-removetag-code">2.17. Remove a tag from select persons : <code>removetag</code></a></h3>
-<div class="paragraph">
-<p>Removes the given tag from the specified persons .<br>
-Format: <code>removetag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Removes the tag from every person specified by the <code>INDEXES</code>.</p>
-</li>
-<li>
-<p>The tag is case-sensitive.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the most recent listing.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>removetag 1 2 3 t/friends</code><br>
-Removes the tag "friends" from the 1st, 2nd and 3rd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>removetag 2 5 t/classmate</code><br>
-Removes the tag "classmate" from the 2nd and 5th person in the results of the <code>find</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.18. Clearing all entries : <code>clear</code></a></h3>
-<div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.19. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.6. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.20. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.7. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -776,43 +800,31 @@ There is no need to save manually.</p>
 
 </div>
 <div class="sect2">
-<h3 id="unicity-as-an-online-application"><a class="link" href="#unicity-as-an-online-application">3.2. UniCity as an online application</a></h3>
+<h3 id="automatic-pop-up-help-window-for-new-users"><a class="link" href="#automatic-pop-up-help-window-for-new-users">3.2. Automatic pop-up help window for new users</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="database-to-check-for-unicity-users"><a class="link" href="#database-to-check-for-unicity-users">3.3. Database to check for UniCity users</a></h3>
+<h3 id="event-reminders-for-a-person"><a class="link" href="#event-reminders-for-a-person">3.3. Event reminders for a person</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="facebook-command-to-search-for-contacts-on-facebook"><a class="link" href="#facebook-command-to-search-for-contacts-on-facebook">3.4. Facebook command to search for contacts on Facebook</a></h3>
+<h3 id="changing-wallpaper-of-the-background-of-unicity"><a class="link" href="#changing-wallpaper-of-the-background-of-unicity">3.4. Changing wallpaper of the background of UniCity</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="automatic-pop-up-help-window-for-new-users"><a class="link" href="#automatic-pop-up-help-window-for-new-users">3.5. Automatic pop-up help window for new users</a></h3>
+<h3 id="auto-completion-through-command-history"><a class="link" href="#auto-completion-through-command-history">3.5. Auto-completion through command history</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="event-reminders-for-a-person"><a class="link" href="#event-reminders-for-a-person">3.6. Event reminders for a person</a></h3>
+<h3 id="suggestions-when-typing-a-name-in-find-command"><a class="link" href="#suggestions-when-typing-a-name-in-find-command">3.6. Suggestions when typing a name in find command</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="changing-wallpaper-of-the-background-of-unicity"><a class="link" href="#changing-wallpaper-of-the-background-of-unicity">3.7. Changing wallpaper of the background of UniCity</a></h3>
+<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">3.7. Group contacts by their courses of study</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="auto-completion-through-command-history"><a class="link" href="#auto-completion-through-command-history">3.8. Auto-completion through command history</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="suggestions-when-typing-a-name-in-find-command"><a class="link" href="#suggestions-when-typing-a-name-in-find-command">3.9. Suggestions when typing a name in find command</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">3.10. Group contacts by their courses of study</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="memories"><a class="link" href="#memories">3.11. Memories</a></h3>
+<h3 id="memories"><a class="link" href="#memories">3.8. Memories</a></h3>
 
 </div>
 </div>
@@ -862,7 +874,7 @@ e.g. <code>find James Jake</code></p>
 e.g.<code>select 2</code></p>
 </li>
 <li>
-<p><strong>Sort</strong> : <code>sort</code></p>
+<p><strong>Sort</strong> : 'sort'</p>
 </li>
 <li>
 <p><strong>History</strong> : <code>history</code></p>
@@ -874,15 +886,7 @@ e.g.<code>select 2</code></p>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
-<p><strong>Birthday</strong> : <code>birthday INDEX b/BIRTHDAY</code><br>
-e.g. <code>birthday 2 b/240596</code></p>
-</li>
-<li>
-<p><strong>AddTag</strong> : <code>addtag [INDEX] [MORE_INDEXES] [t/TAG]</code><br>
-e.g. <code>addtag 3 7 t/friend</code></p>
-</li>
-<li>
-<p><strong>RemoveTag</strong> : <code>removetag [INDEX] [MORE_INDEXES] [t/TAG]</code><br>
+<p><strong>RemoveTag</strong> : <code>removetag</code><br>
 e.g. <code>removetag 3 7 t/lecturer</code></p>
 </li>
 </ul>
@@ -892,7 +896,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 10:21:12 +00:00
+Last updated 2017-10-22 10:44:34 +00:00
 </div>
 </div>
 </body>
