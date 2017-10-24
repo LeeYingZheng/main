@@ -5,55 +5,122 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
-<title>AddressBook Level 4 - User Guide</title>
+<title>UniCity - User Guide</title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>AddressBook Level 4 - User Guide</h1>
+<h1>UniCity - User Guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team W13-B1</code>      Since: <code>AUG 2017</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#quick-start">1. Quick Start</a></li>
-<li><a href="#features">2. Features</a>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#overview-of-unicity">2. Overview of UniCity</a></li>
+<li><a href="#quick-start">3. Quick Start</a></li>
+<li><a href="#features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></li>
-<li><a href="#viewing-contacts">2.2. Viewing Contacts</a></li>
-<li><a href="#contacts-modification">2.3. Contacts Modification</a></li>
-<li><a href="#web-services">2.4. Web Services</a></li>
-<li><a href="#command-sequence-and-history">2.5. Command Sequence and History</a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.6. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.7. Saving the data</a></li>
+<li><a href="#viewing-contacts">4.1. Viewing Contacts</a></li>
+<li><a href="#modifying-contacts">4.2. Modifying Contacts</a></li>
+<li><a href="#using-web-services">4.3. Using Web Services</a></li>
+<li><a href="#managing-command-sequence-and-history">4.4. Managing Command Sequence and History</a></li>
+<li><a href="#miscellaneous">4.5. Miscellaneous</a></li>
 </ul>
 </li>
-<li><a href="#coming-in-v2-0">3. Coming in v2.0</a>
+<li><a href="#coming-in-v2-0">5. Coming in v2.0</a>
 <ul class="sectlevel2">
-<li><a href="#log-in-window-for-a-user">3.1. Log in window for a user</a></li>
-<li><a href="#automatic-pop-up-help-window-for-new-users">3.2. Automatic pop-up help window for new users</a></li>
-<li><a href="#event-reminders-for-a-person">3.3. Event reminders for a person</a></li>
-<li><a href="#changing-wallpaper-of-the-background-of-unicity">3.4. Changing wallpaper of the background of UniCity</a></li>
-<li><a href="#auto-completion-through-command-history">3.5. Auto-completion through command history</a></li>
-<li><a href="#suggestions-when-typing-a-name-in-find-command">3.6. Suggestions when typing a name in find command</a></li>
-<li><a href="#group-contacts-by-their-courses-of-study">3.7. Group contacts by their courses of study</a></li>
-<li><a href="#memories">3.8. Memories</a></li>
+<li><a href="#log-in-window-for-a-user">5.1. Log in window for a user</a></li>
+<li><a href="#automatic-pop-up-help-window-for-new-users">5.2. Automatic pop-up help window for new users</a></li>
+<li><a href="#event-reminders-for-a-person">5.3. Event reminders for a person</a></li>
+<li><a href="#changing-wallpaper-of-the-background-of-unicity">5.4. Changing wallpaper of the background of UniCity</a></li>
+<li><a href="#auto-completion-through-command-history">5.5. Auto-completion through command history</a></li>
+<li><a href="#suggestions-when-typing-a-name-in-find-command">5.6. Suggestions when typing a name in find command</a></li>
+<li><a href="#group-contacts-by-their-courses-of-study">5.7. Group contacts by their courses of study</a></li>
+<li><a href="#memories">5.8. Memories</a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
+<li><a href="#faq">6. FAQ</a></li>
+<li><a href="#command-summary">7. Command Summary</a></li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="quick-start"><a class="link" href="#quick-start">1. Quick Start</a></h2>
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UniCity is a desktop application that is mainly based on the usage of the Command Line Interface (CLI).
+It aims to provide a user-friendly contact management experience for students struggling to manage their
+ever increasing network.</p>
+</div>
+<div class="paragraph">
+<p>This user guide provides a reference for the user if he/she requires extra guidance and provides the following:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Detailed explanation of the features in UniCity and how to execute them.<br></p>
+</li>
+<li>
+<p>Features that are to be implemented in the future to provide a road map of where UniCity is headed.<br></p>
+</li>
+<li>
+<p>Summary of the commands to serve as a cheat sheet in the future.<br></p>
+</li>
+<li>
+<p>Dedicated section for Frequently Asked Questions (FAQ).<br></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Familiarity with the CLI may be necessary to maximise the utility of UniCity.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview-of-unicity"><a class="link" href="#overview-of-unicity">2. Overview of UniCity</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UniCity has the following features categorised according to the extent of their utility:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Viewing contacts in different views using listing, filtering, finding and sorting contacts.<br></p>
+</li>
+<li>
+<p>Modifying contacts by adding, deleting and editing contacts. <br></p>
+</li>
+<li>
+<p>Using web services such as FaceBook and Google.<br></p>
+</li>
+<li>
+<p>Managing of command sequence and history through undoing and redoing previous commands and viewing a list of
+executed commands.<br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="link" href="#quick-start">3. Quick Start</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -118,7 +185,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect1">
-<h2 id="features"><a class="link" href="#features">2. Features</a></h2>
+<h2 id="features"><a class="link" href="#features">4. Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -144,25 +211,19 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>help</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">2.2. Viewing Contacts</a></h3>
+<h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">4.1. Viewing Contacts</a></h3>
 <div class="paragraph">
 <p>This section lists commands that view a part of UniCity&#8217;s contact list.</p>
 </div>
 <div class="sect3">
-<h4 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">2.2.1. Listing all persons : <code>list</code></a></h4>
+<h4 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.1.1. Listing all persons : <code>list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all persons in the address book.<br>
 Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filtering-persons-by-tags-code-filter-code"><a class="link" href="#filtering-persons-by-tags-code-filter-code">2.2.2. Filtering persons by tags: <code>filter</code></a></h4>
+<h4 id="filtering-persons-by-tags-code-filter-code"><a class="link" href="#filtering-persons-by-tags-code-filter-code">4.1.2. Filtering persons by tags: <code>filter</code></a></h4>
 <div class="paragraph">
 <p>Filters persons whose tags contain any of the given keywords.<br>
 Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
@@ -207,7 +268,7 @@ Returns any person having at least a <code>[professor]</code> or <code>[tutor]</
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">2.2.3. Locating persons by name: <code>find</code></a></h4>
+<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.1.3. Locating persons by name: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -252,7 +313,7 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </div>
 </div>
 <div class="sect3">
-<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">2.2.4. Sorting a person : <code>sort</code></a></h4>
+<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">4.1.4. Sorting a person : <code>sort</code></a></h4>
 <div class="paragraph">
 <p>Sort the list of contacts in addressbook by name.<br>
 Format: <code>sort</code></p>
@@ -294,12 +355,12 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="contacts-modification"><a class="link" href="#contacts-modification">2.3. Contacts Modification</a></h3>
+<h3 id="modifying-contacts"><a class="link" href="#modifying-contacts">4.2. Modifying Contacts</a></h3>
 <div class="paragraph">
 <p>This section lists commands that modify UniCity&#8217;s contact list.</p>
 </div>
 <div class="sect3">
-<h4 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">2.3.1. Adding a person: <code>add</code></a></h4>
+<h4 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.2.1. Adding a person: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
@@ -331,7 +392,7 @@ A person can have any number of tags (including 0)
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">2.3.2. Editing a person : <code>edit</code></a></h4>
+<h4 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">4.2.2. Editing a person : <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
@@ -376,7 +437,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">2.3.3. Editing a person : <code>favourite</code></a></h4>
+<h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">4.2.3. Editing a person : <code>favourite</code></a></h4>
 <div class="paragraph">
 <p>Change the <code>favourite</code> status of an existing person in the address book.<br>
 Format: <code>favourite INDEX</code></p>
@@ -417,10 +478,10 @@ Changes the <code>favourite</code> status of the 1st person in the latest list.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#adding-a-birthday-to-select-person-code-birthday-code">2.3.4. Adding a birthday to select person : <code>birthday</code></a></h4>
+<h4 id="adding-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#adding-a-birthday-to-select-person-code-birthday-code">4.2.4. Adding a birthday to select person : <code>birthday</code></a></h4>
 <div class="paragraph">
 <p>Adds the given birthday to the specified persons .<br>
-Format: <code>birthday INDEX b/BIRTHDAY&#8230;&#8203;</code></p>
+Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -461,10 +522,10 @@ Adds the birthday "211095" to the 1st person in the address book.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">2.3.5. Adding a tag to select persons : <code>addtag</code></a></h4>
+<h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">4.2.5. Adding a tag to select persons : <code>addtag</code></a></h4>
 <div class="paragraph">
 <p>Adds the given tag to the specified persons .<br>
-Format: <code>addtag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -505,10 +566,10 @@ Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>f
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">2.3.6. Removing a tag from select persons : <code>removetag</code></a></h4>
+<h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">4.2.6. Removing a tag from select persons : <code>removetag</code></a></h4>
 <div class="paragraph">
 <p>Removes the given tag from identified person by the list of index numbers used in the last person .<br>
-Format: <code>removetag [INDEX] [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -549,7 +610,7 @@ Removes the tag "classmate" from the 2nd and 5th person in the results of the <c
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.3.7. Deleting a person : <code>delete</code></a></h4>
+<h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.2.7. Deleting a person : <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
@@ -590,7 +651,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.3.8. Clearing all entries : <code>clear</code></a></h4>
+<h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.2.8. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
@@ -598,12 +659,12 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="web-services"><a class="link" href="#web-services">2.4. Web Services</a></h3>
+<h3 id="using-web-services"><a class="link" href="#using-web-services">4.3. Using Web Services</a></h3>
 <div class="paragraph">
 <p>This section lists commands that require the Internet to provide services. Ensure Internet connection is established before entering these commands.</p>
 </div>
 <div class="sect3">
-<h4 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.4.1. Selecting a person : <code>select</code></a></h4>
+<h4 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.3.1. Selecting a person : <code>select</code></a></h4>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select INDEX</code></p>
@@ -649,7 +710,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="logging-in-to-facebook-code-facebook-code"><a class="link" href="#logging-in-to-facebook-code-facebook-code">2.4.2. Logging in to Facebook : <code>facebook</code></a></h4>
+<h4 id="logging-in-to-facebook-code-facebook-code"><a class="link" href="#logging-in-to-facebook-code-facebook-code">4.3.2. Logging in to Facebook : <code>facebook</code></a></h4>
 <div class="paragraph">
 <p>Shows the log in page for Facebook.<br>
 Format: <code>facebook</code> or 'fb'</p>
@@ -673,12 +734,12 @@ Format: <code>facebook</code> or 'fb'</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="command-sequence-and-history"><a class="link" href="#command-sequence-and-history">2.5. Command Sequence and History</a></h3>
+<h3 id="managing-command-sequence-and-history"><a class="link" href="#managing-command-sequence-and-history">4.4. Managing Command Sequence and History</a></h3>
 <div class="paragraph">
 <p>This section lists commands that toggle with the past and present commands entered in UniCity.</p>
 </div>
 <div class="sect3">
-<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.5.1. Listing entered commands : <code>history</code></a></h4>
+<h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.4.1. Listing entered commands : <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -699,7 +760,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.5.2. Undoing previous command : <code>undo</code></a></h4>
+<h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.4.2. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -744,7 +805,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect3">
-<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.5.3. Redoing the previously undone command : <code>redo</code></a></h4>
+<h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.4.3. Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -777,14 +838,23 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.6. Exiting the program : <code>exit</code></a></h3>
+<h3 id="miscellaneous"><a class="link" href="#miscellaneous">4.5. Miscellaneous</a></h3>
+<div class="sect3">
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.5.1. Viewing help : <code>help</code></a></h4>
+<div class="paragraph">
+<p>Shows this user guide.<br>
+Format: <code>help</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.2. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.7. Saving the data</a></h3>
+<div class="sect3">
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.5.3. Saving the data</a></h4>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -792,52 +862,57 @@ There is no need to save manually.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="coming-in-v2-0"><a class="link" href="#coming-in-v2-0">3. Coming in v2.0</a></h2>
+<h2 id="coming-in-v2-0"><a class="link" href="#coming-in-v2-0">5. Coming in v2.0</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="log-in-window-for-a-user"><a class="link" href="#log-in-window-for-a-user">3.1. Log in window for a user</a></h3>
+<h3 id="log-in-window-for-a-user"><a class="link" href="#log-in-window-for-a-user">5.1. Log in window for a user</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="automatic-pop-up-help-window-for-new-users"><a class="link" href="#automatic-pop-up-help-window-for-new-users">3.2. Automatic pop-up help window for new users</a></h3>
+<h3 id="automatic-pop-up-help-window-for-new-users"><a class="link" href="#automatic-pop-up-help-window-for-new-users">5.2. Automatic pop-up help window for new users</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="event-reminders-for-a-person"><a class="link" href="#event-reminders-for-a-person">3.3. Event reminders for a person</a></h3>
+<h3 id="event-reminders-for-a-person"><a class="link" href="#event-reminders-for-a-person">5.3. Event reminders for a person</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="changing-wallpaper-of-the-background-of-unicity"><a class="link" href="#changing-wallpaper-of-the-background-of-unicity">3.4. Changing wallpaper of the background of UniCity</a></h3>
+<h3 id="changing-wallpaper-of-the-background-of-unicity"><a class="link" href="#changing-wallpaper-of-the-background-of-unicity">5.4. Changing wallpaper of the background of UniCity</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="auto-completion-through-command-history"><a class="link" href="#auto-completion-through-command-history">3.5. Auto-completion through command history</a></h3>
+<h3 id="auto-completion-through-command-history"><a class="link" href="#auto-completion-through-command-history">5.5. Auto-completion through command history</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="suggestions-when-typing-a-name-in-find-command"><a class="link" href="#suggestions-when-typing-a-name-in-find-command">3.6. Suggestions when typing a name in find command</a></h3>
+<h3 id="suggestions-when-typing-a-name-in-find-command"><a class="link" href="#suggestions-when-typing-a-name-in-find-command">5.6. Suggestions when typing a name in find command</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">3.7. Group contacts by their courses of study</a></h3>
+<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">5.7. Group contacts by their courses of study</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="memories"><a class="link" href="#memories">3.8. Memories</a></h3>
+<h3 id="memories"><a class="link" href="#memories">5.8. Memories</a></h3>
 
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">6. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
-Alternatively, you may log in as a user into the online version of UniCity and it will fetch your contacts from your addressbook.
-== Command Summary</p>
+Alternatively, you may log in as a user into the online version of UniCity and it will fetch your contacts from your addressbook.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">7. Command Summary</a></h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -874,7 +949,7 @@ e.g. <code>find James Jake</code></p>
 e.g.<code>select 2</code></p>
 </li>
 <li>
-<p><strong>Sort</strong> : 'sort'</p>
+<p><strong>Sort</strong> : <code>sort</code></p>
 </li>
 <li>
 <p><strong>History</strong> : <code>history</code></p>
@@ -886,7 +961,15 @@ e.g.<code>select 2</code></p>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
-<p><strong>RemoveTag</strong> : <code>removetag</code><br>
+<p><strong>Birthday</strong> : <code>birthday INDEX [b/BIRTHDAY]</code><br>
+e.g. <code>birthday 2 b/240596</code></p>
+</li>
+<li>
+<p><strong>AddTag</strong> : <code>addtag INDEX [MORE_INDEXES] [t/TAG]</code><br>
+e.g. <code>addtag 1 4 t/friends</code></p>
+</li>
+<li>
+<p><strong>RemoveTag</strong> : <code>removetag INDEX [MORE_INDEXES] [t/TAG]</code><br>
 e.g. <code>removetag 3 7 t/lecturer</code></p>
 </li>
 </ul>
@@ -896,7 +979,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 16:36:51 +00:00
+Last updated 2017-10-24 02:09:10 +00:00
 </div>
 </div>
 </body>
