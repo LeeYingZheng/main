@@ -819,10 +819,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect2">
 <h3 id="favourite-mechanism-since-v1-2"><a class="link" href="#favourite-mechanism-since-v1-2">4.2. Favourite mechanism (Since v1.2)</a></h3>
 <div class="paragraph">
-<p>To favourite a contact is achieved by <code>FavouriteCommand</code>, which is a subclass of <code>UndoableCommand</code>. It basically changes the value of the <code>Favourite</code> field of a <code>Person</code>.</p>
+<p>To favourite a contact is achieved by <code>FavouriteCommand</code>. It basically changes the value of the <code>Favourite</code> field of a <code>Person</code>. The <code>Favourite</code> class has two status indicators: one is a boolean value and the other is a String. The boolean one is used in the constructor while the String one is for UI and output purposes.</p>
 </div>
 <div class="paragraph">
-<p>In this sense, <code>Favourite</code> class need to be created to store the favourite status of a contact. As <code>AddCommand</code> does not involve <code>Favourite</code>, the default <code>Favourite</code> status for every newly added <code>Person</code> is "False".</p>
+<p>In this sense, <code>Favourite</code> class needs to be created to store the favourite status of a contact. As <code>AddCommand</code> does not involve <code>Favourite</code>, the default <code>Favourite</code> status for every newly added <code>Person</code> is false.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how a <code>FavouriteCommand</code> is processed:</p>
@@ -833,47 +833,26 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>To make the default status of a <code>Favourite</code> field "False", the default constructor of <code>Favourite</code> is implemented in this way:</p>
+<p>To make the default status of a <code>Favourite</code> field "False", the default constructor of <code>Favourite</code> takes no arguments and set the boolean indicator to false. The value of the String indicator is synchronised with the boolean indicator. But in some cases, such as JUnit Tests, a <code>FavouriteCommand</code> needs to be initialised in such a way that its status is "True". Thus, another constructor that takes in a boolean argument is also available. The following shows the two different constructors:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Favourite</span> {
-
-    <span class="directive">private</span> <span class="predefined-type">String</span> status;
-
-    <span class="directive">public</span> Favourite() {
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> Favourite() {
+        <span class="local-variable">this</span>.favourite = <span class="predefined-constant">false</span>;
         <span class="local-variable">this</span>.status = <span class="string"><span class="delimiter">&quot;</span><span class="content">False</span><span class="delimiter">&quot;</span></span>;
     }
-}</code></pre>
+
+    <span class="directive">public</span> Favourite(<span class="type">boolean</span> favourite) {
+        <span class="local-variable">this</span>.favourite = favourite;
+        <span class="local-variable">this</span>.status = favourite ? <span class="string"><span class="delimiter">&quot;</span><span class="content">True</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">False</span><span class="delimiter">&quot;</span></span>;
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In addition, the utility class <code>PersonBuilder</code> sets the default value of <code>Favourite</code> to each newly created object in this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">PersonBuilder</span> {
-    <span class="comment">// ... other default values ...</span>
-    <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> Favourite DEFAULT_FAVOURITE = <span class="keyword">new</span> Favourite();
-
-    <span class="directive">private</span> Person person;
-
-    <span class="directive">public</span> PersonBuilder() {
-           <span class="keyword">try</span> {
-               <span class="comment">// ... set other fields to their default states ...</span>
-               Favourite defaultFavourite = DEFAULT_FAVOURITE;
-
-               <span class="local-variable">this</span>.person = <span class="keyword">new</span> Person(defaultName, defaultPhone, defaultEmail, defaultAddress,
-                       defaultFavourite, defaultTags);
-           } <span class="keyword">catch</span> (IllegalValueException ive) {
-               <span class="comment">// ... catch statement ...</span>
-           }
-       }
-}</code></pre>
-</div>
+<p>In addition, the utility class <code>PersonBuilder</code> is also modified to set the default value of <code>Favourite</code> to each newly created object.</p>
 </div>
 <div class="paragraph">
-<p>After the default status is set, <code>FavouriteCommand</code> changes it either from "True" to "False" or "False" to "True". <code>FavouriteCommand</code> takes in an integer as its argument. The command is first being parsed in <code>AddressBookParser</code> to be identified as an instance of <code>FavouriteCommand</code>. Then it is parsed by <code>FavouriteCommandParser</code> to parse the index. Invalid indexes will be handled by throwing an exception. This is how <code>FavouriteCommandParser</code> is implemented:</p>
+<p><code>FavouriteCommand</code> takes in an integer as its argument. The command is first being parsed in <code>AddressBookParser</code> to be identified as an instance of <code>FavouriteCommand</code>. Then it is parsed by <code>FavouriteCommandParser</code> to parse the index. Invalid indexes will be handled by throwing an exception. This is how <code>FavouriteCommandParser</code> is implemented:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -901,15 +880,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
         <span class="directive">protected</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
             <span class="comment">// ... fetch personToEdit ...</span>
 
-            Favourite favourite = personToEdit.getFavourite();
-            favourite.setFavourite();
-            <span class="keyword">if</span> (favourite.getStatus().equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">True</span><span class="delimiter">&quot;</span></span>)) {
-                changedToFav = <span class="predefined-constant">true</span>;
-            } <span class="keyword">else</span> {
-                changedToFav = <span class="predefined-constant">false</span>;
-            }
-            Person editedPerson = <span class="keyword">new</span> Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), favourite, personToEdit.getTags());
+             Favourite favourite = personToEdit.getFavourite();
+             favourite.toggleFavourite();
+             changedToFav = favourite.getFavourite();
+
+             Person editedPerson = <span class="keyword">new</span> Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(), favourite, personToEdit.getBirthday(), personToEdit.getTags());
 
             <span class="comment">// ... try replace personToEdit with editedPerson ...</span>
         }
@@ -917,7 +892,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>It is important to display <code>Favourite</code> in the user interface. Thus a few changes on UI is needed. <code>PersonCard</code> class and <code>PersonCardHandle</code> class are modified to include <code>Favourite</code> label in the UI. <code>PersonListCard.fxml</code> is also modified to reserve space for the <code>Favourite</code> label.</p>
+<p>It is important to display <code>Favourite</code> in the user interface. <code>PersonCard</code> is modified to contain a <code>favouriteLabel</code> that changes its appearance based on the favourite status of the person. It will first detect the boolean favourite status of the person. If the person is a favourite contact, a yellow star will be shown. Otherwise, a transparent star with black border will be show. The colours of the border and the background of the label are set to transparent, so that only the background picture, which is a star, will be shown.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.1. Design Considerations</a></h4>
@@ -929,6 +904,16 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <strong>Alternative 2:</strong> Keep it as a <code>Boolean</code> value<br>
 <strong>Pros:</strong> Does not need to create another class. Easier to implement.<br>
 <strong>Cons:</strong> Potentially catastrophic because some Boolean methods need to be overwritten. It is also prone to bugs when developers forget to change the ObjectProperty to <code>String</code> in UI classes.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Indicating <code>Favourite</code> values<br>
+<strong>Alternative 1 (current choice):</strong> Two indicators: one boolean and one String<br>
+<strong>Pros:</strong> Using the boolean indicator in conditional loops can reduce the complexity of the code. It is also more natural to have a binary value of the favourite status. It also exercises defensive programming, because passing a String parameter to the constructor may break the application if the argument is illegal (anything besides "True" and "False"). By also having a String indicator, it is much easier to output the value of the favourite status.<br>
+<strong>Cons:</strong> Need to create one more variable in the <code>Favourite</code> class. Also additional attention needs to be given to avoid problems where the two indicators are not synchronised.<br>
+<strong>Alternative 2:</strong> Only use a String indicator<br>
+<strong>Pros:</strong> Easier to implement.<br>
+<strong>Cons:</strong> Dangerous as it is prone to bugs when an illegal String value is passed to the constructor. It is also not natural to have a String indicator for a supposedly binary one.<br></p>
 </div>
 <hr>
 <div class="paragraph">
@@ -3259,7 +3244,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-31 15:22:28 +00:00
+Last updated 2017-10-31 15:34:37 +00:00
 </div>
 </div>
 </body>
