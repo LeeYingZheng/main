@@ -353,14 +353,8 @@ Format: <code>sort</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>select 2</code><br>
-Selects the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>select 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command.</p>
+<p><code>sort</code><br>
+Sort the contacts in Address Book by ascending order.</p>
 </li>
 </ul>
 </div>
@@ -375,7 +369,21 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 <h4 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.2.1. Adding a person: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only the name and phone number field are compulsory. Default value will be entered if other fields are left empty.</p>
+</li>
+<li>
+<p>Multiple values can be entered for one field but the system will only use the last input entered.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -395,10 +403,10 @@ A person can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+<p><code>add n/John Doe p/98765432</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 b/030594 t/criminal</code></p>
 </li>
 </ul>
 </div>
@@ -488,6 +496,11 @@ Changes the <code>favourite</code> status of the 1st person in the latest list.<
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/fav-command-ui.png" alt="fav command ui" width="790">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="adding-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#adding-a-birthday-to-select-person-code-birthday-code">4.2.4. Adding a birthday to select person : <code>birthday</code></a></h4>
@@ -503,7 +516,7 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The birthday is case-sensitive.</p>
+<p>The birthday command is case-sensitive.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -515,7 +528,7 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <p>The birthday <strong>must be in positive intgers</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>The birthday <strong>must be 4- 8 integers long</strong> 2110, 211095, 21101995, &#8230;&#8203;</p>
+<p>The birthday <strong>must be 4 or 6 or 8 integers long</strong> in the format DDMM or DDMMYY or DDMMYYYY  &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -527,10 +540,20 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>birthday 1 b/211095</code><br>
-Adds the birthday "211095" to the 1st person in the address book.</p>
+<p><code>list</code><br>
+<code>birthday 1 b/211095</code><br>
+Adds the birthday "21 Oct 95" to the 1st person in the address book.</p>
+</li>
+<li>
+<p><code>birthday 3 b/2110</code><br>
+Adds the birthday "21 Oct" to the 3rd person in the address book.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/birthday-command-ui.png" alt="birthday command ui" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1061,7 +1084,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-01 12:42:46 +00:00
+Last updated 2017-11-02 04:26:52 +00:00
 </div>
 </div>
 </body>
