@@ -6,8 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.PopulateBirthdayEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -68,22 +70,15 @@ public class AddBirthdayCommand extends UndoableCommand {
     public CommandResult executeUndoableCommand() throws CommandException {
 
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
-        boolean personsContainsBirthdayToAdd = true;
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        targetIndexesOutOfBoundsChecker(lastShownList);
 
         ReadOnlyPerson readOnlyPerson = lastShownList.get(targetIndex.getZeroBased());
-        if (Objects.equals(readOnlyPerson.getBirthday().toString(), Birthday.DEFAULT_BIRTHDAY)) {
-            personsContainsBirthdayToAdd = false;
-        }
+        checkDuplicateBirthday(readOnlyPerson.getBirthday().toString());
 
-        if (personsContainsBirthdayToAdd) {
-            throw new CommandException(MESSAGE_DUPLICATE_BIRTHDAY);
-        }
         try {
             model.addBirthday(this.targetIndex, this.toAdd);
+            EventsCenter.getInstance().post(new PopulateBirthdayEvent(model.getFilteredPersonList()));
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } catch (PersonNotFoundException pnfe) {
@@ -91,6 +86,21 @@ public class AddBirthdayCommand extends UndoableCommand {
         }
 
         return new CommandResult(String.format(MESSAGE_ADD_BIRTHDAY_SUCCESS, toAdd));
+    }
+
+    /**
+     * Checks if all target indexes are not out of bounds.
+     */
+    private void targetIndexesOutOfBoundsChecker(List<ReadOnlyPerson> lastShownList) throws CommandException {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    private void checkDuplicateBirthday(String birthday) throws CommandException {
+        if (!Objects.equals(birthday, Birthday.DEFAULT_BIRTHDAY)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BIRTHDAY);
+        }
     }
 
     @Override

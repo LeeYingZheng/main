@@ -2,7 +2,6 @@
 :sectnums:
 
 
-
 == Introduction
 This document explains how to perform manual testing on UniCity. It shows the command to type and the expected result.
 Deatils on how to load the sample data is included as well.
@@ -18,7 +17,7 @@ This is by no means an exhaustive list of tests.
 . Rename it `addressbook.xml`.
 
 [NOTE]
-A common mistake is renaming the file name as `addressbook.xml` making the entire file to be read as
+A common mistake is renaming the file name as `addressbook.xml`, making the entire file to be read as
 `addressbook.xml.xml`. Make sure that the name is simply addressbook and the file type is xml.
 
 == Manual testing on UniCity commands
@@ -26,7 +25,7 @@ A common mistake is renaming the file name as `addressbook.xml` making the entir
 The manual testing done below is based on the `[W13-B1][UniCity]SampleData.xml` file from IVLE. Please load that into
 UniCity before starting the test.
 
-=== Find command
+=== Suggestion feature for find command
 
 Command usage: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -50,6 +49,11 @@ Expected result: No results for alx. Showing results for Alex instead.
 +
 `Alex Yeoh` will be displayed.
 
+* `find char alex` +
+Expected result: 1 persons listed!.
++
+`Alex Yeoh` will be displayed since alex matches a person in the list.
+
 * `find alx char` +
 Expected result: No results for alx char. Showing results for Alex, Charlotte instead.
 +
@@ -61,8 +65,9 @@ Expected result: No results for asdkh. Showing results for Kathy instead.
 `Kathy Forest` will be displayed.
 
 [NOTE]
-The suggestion of the closest matching name is just a prediction.If the given name is ambiguous,
-it will return closest mtaching name even though no such name can can be found for such an ambiguous input.
+The suggestion of the closest matching name is just a prediction. If the given input is ambiguous,
+it will return closest matching name even though no such name can be matched for such an ambiguous input. +
+Example: `ye` will return Alex but `yeo` will return Yeoh as the closest matching name.
 
 * `find` +
 Expected result:
@@ -78,6 +83,53 @@ Expected result: No matching name found for 123. Showing all contacts instead.
 +
 All contacts will be displayed.
 
+=== Filter command
+
+Command usage: `filter TAG [MORE_TAGS]...`
+Since this test relies on filtering tags, the expected results may differ if addtag/removetag tests is done before this tests.
+
+* `filter colleagues` +
+Expected result: 3 persons listed!
++
+The person panel list will display three persons that have `colleagues` tag.
+
+* `filter friends` +
+Expected result: 5 persons listed!
++
+The person panel list will display five persons that have `friends` tag.
+
+* `filter friends colleagues` +
+Expected result: 8 persons listed!
++
+The person panel list will display eight persons that have either the `colleagues` or `friends` tag, or both.
+
+* `filter professors boss` +
+Expected result: 3 persons listed!
++
+The person panel list will display three persons that have either the `professors` or `boss` tag, or both.
+
+* `filter girlfriend` +
+Expected result: 0 persons listed!
++
+Since no contacts have been tagged as `girlfriend`, no tags will match the filter criteria, hence zero persons displayed.
+
+* `filter friend` +
+Expected result: 0 persons listed!
++
+Since the filter criteria is word specific, the `friend` filter criteria will not match with the `friends` tag, hence zero persons displayed.
+
+* `filter PROFESSORS` +
+Expected result: 0 persons listed!
++
+Since the filter criteria is case sensitive, the `PROFESSORS` filter criteria will not match with the `professors` tag, hence zero persons displayed.
+
+* `filter` +
+Expected result: +
+Invalid command format!
+filter: Filters all persons whose tags contain any of the specified keywords (case-sensitive) and displays them as a list with index numbers. Command is case-insensitive.
+Parameters: KEYWORD [MORE_KEYWORDS]...
++
+The command is missing parameters which results in an incorrect format.
 
 === Add tags command
 
@@ -241,4 +293,196 @@ Parameters: WINDOWSIZE (Allowed sizes are small, med, big) +
 Example 1: ws small +
 Example 2: ws big
 
+=== Favourite command
 
+Command usage: `favourite INDEX` OR `fav INDEX`
+
+[NOTE]
+If the person is already a favourite person, performing `FavouriteCommand` on this person will remove the person from favourite.
+
+
+* `favourite 2` +
+Expected result: Favourite Person: Charlotte Oliverio Phone: 91031282 Email: charoli@gmail.com Address: Blk 436 Serangoon Gardens Street 26, #16-43 Favourite: True Birthday: 02/03/1994 Tags: [family]
++
+The star on the top right corner of Charlotte's person card will become yellow.
+
+* `fav 1` +
+Expected result: Remove Person from Favourites: Alex Yeoh Phone: 87438807 Email: alexyeoh@yahoo.com Address: Blk 30 Geylang Street 29, #06-40 Favourite: False Birthday: 04/05/1995 Tags: [colleagues][friends]
++
+The star on the top right corner of Alex's person card will become transparent.
+
+* `favourite 0` +
+Expected result: +
+Invalid command format! +
+favourite: Mark the person as favourite by the index number used in the last person listing. +
+Parameters: INDEX (must be a positive integer) +
+Example: favourite 1 OR fav 1
++
+
+* `fav 99999` +
+Expected result: The person index provided is invalid
++
+[NOTE]
+This result will only be displayed if and only if there are fewer than 99999 contacts in UniCity.
+
+* `favourite` +
+Expected result: +
+Invalid command format! +
+favourite: Mark the person as favourite by the index number used in the last person listing. +
+Parameters: INDEX (must be a positive integer) +
+Example: favourite 1 OR fav 1
++
+
+=== Sort Command
+* `sort` +
+Expected result: all the contacts will be sorted in alphabetically order
+
+=== Add Birthday Command
+* `birthday 99999 b/05/24/1994` +
+Expected result: The person index provided is invalid
++
+* `birthday 1 b/b/05/24` +
+Expected result: Birthdays should be numeric in the format DD/MM/YY or DD/MM/YYYY.
++
+* `birthday 1 b/20/10/1994 +
+Expected result: the person indexed 1 will be have its default birthday changed to 20/10/1994
++
+[NOTE]
+This birthday of the contact will only be changed if it has the default value originally. If a birthday already exists in the field, you need to use the edit command instead.
+
+=== List all favourite person
+
+Command usage: `showFavourite` or `sf`
+
+* `sf` +
+Expected result: 5 persons listed!
++
+A list of the 5 favourite persons will be displayed.
+
+=== Display address on Google Maps
+
+Command usage: `locate INDEX` +
+
+* `list` +
+`locate 1` +
+Expected result: Address of the person is displayed
++
+Google Maps will be loaded in BrowsePanel. In the search box is the address of Alex Yeoh.
++
+
+* `locate 7` +
+Expected result:  Address of this person has not been inputted.
++
+In this case, Google Maps will not be loaded in BrowsePanel.
+
+* `locate` +
+Expected result: +
+Invalid command format! +
+locate: Displays the location of the person identified by the index number in the latest person listing.Parameters: INDEX (must be a positive integer) +
+Example: locate 1
++
+
+* `locate 99999` +
+Expected result: The person index provided is invalid
++
+
+[NOTE]
+This result will be displayed if and only if there are fewer than 99999 contacts in UniCity.
++
+
+* `locate 0` +
+Expected result: +
+Invalid command format! +
+locate: Displays the location of the person identified by the index number in the latest person listing.Parameters: INDEX (must be a positive integer) +
+Example: locate 1
+
+=== Facebook command
+
+Command usage: `facebook INDEX` OR `fb INDEX` +
+[NOTE]
+Facebook may ask you to login to proceed, or ask you key in the characters in a picture for verification purpose.
+
+* `facebook 2` +
+Expected result: Opened facebook window.
++
+Facebook search page will be loaded in BrowsePanel. In this search box is the name of the second person in UniCity, which is Charlotte Oliverio.
+[NOTE]
+It may take a few seconds for the Facebook page to be loaded.
++
+
+* `facebook` +
+Expected result: +
+Invalid command format! +
+facebook: Searches the name of the person specified by the index number in Facebook. +
+Parameters: INDEX (must be a positive integer) +
+Example: facebook 1 OR fb 1 +
+
+* `fb 0` +
+Expected result: +
+Invalid command format! +
+facebook: Searches the name of the person specified by the index number in Facebook. +
+Parameters: INDEX (must be a positive integer) +
+Example: facebook 1 OR fb 1 +
+
+* `fb 99999` +
+Expected result: The person index provided is invalid
++
+[NOTE]
+This result will be displayed if and only if there are fewer than 99999 contacts in UniCity.
+
+=== Add command with duplicate fields
+
+* `add n/Yong Dian Nao p/98234567 e/dn_yong@yahoo.com.sg` +
+Expected result: This person's name is already in use.Would you like to continue? YES or NO?
++
+A contact in the contact list already has the name `Yong Dian Nao`. The add function detects this and prompts the user if he/she wants to continue.
+
+* (following the above add command) `yes` +
+Expected result: New person added: Yong Dian Nao Phone: 98234567 Email: dn_yong@yahoo.com.sg Address: No Address Added Favourite: False Birthday: No Birthday Added Tags:
++
+User decides to continue with the add command with the knowledge that there is already an existing contact sharing the same name. The add command is executed and this contact appears as the last contact in the list.
+
+* `add n/ong lye p/92384562 e/ol_lye@gmail.com` +
+Expected result: This person's name, phone is already in use.Would you like to continue? YES or NO?
++
+A contact in the contact list already has the name `Ong Lye` and phone number `92384562`(Mei Li Mao's phone number).
+The check for duplicate fields is case-insensitive. UniCity searches for duplicate fields in the sequence of the current listing.
+It detects a duplicate name first, then the duplicate phone number as the person with the duplicate name appears first, before the person with the duplicate phone number, in the contact listing.
+The add function detects this and prompts the user if he/she wants to continue.
+
+* (following the above add command) `no` +
+Expected result: Command not executed.
++
+User decides to discontinue the add command. The command is terminated and the contact will not be added to the contact list.
+
+* `add n/bernice yu p/93415783 e/royb@hotmail.com` +
+Expected result: This person's email, phone, name is already in use.Would you like to continue? YES or NO?
++
+A contact in the contact list already has the name `Bernice Yu` and phone number `93415783`(Courtney Prince's phone number) and email `royb@hotmail.com` (Roy Banner).
+The check for duplicate fields is case-insensitive. UniCity searches for duplicate fields in the sequence of the current listing.
+It detects a duplicate email first, then the duplicate phone number and lastly the duplicate name according to the sequence of `Roy Banner`, `Courtney Prince` and `Bernice Yu`
+The add function detects this and prompts the user if he/she wants to continue.
+
+* (following the above add command) `add n/Lee Tien Jin p/98234764 e/teejay@hotmail.com` +
+Expected result: New person added: Lee Tien Jin Phone: 98234764 Email: teejay@hotmail.com Address: No Address Added Favourite: False Birthday: No Birthday Added Tags:
++
+A new command has been crafted and the previous add command has been ignored and terminated. This new add command detects no duplicates, hence the add command proceeds as normal and adds the contact into UniCity's contact list.
+
+=== Exit
+
+Command usage: `exit` +
+
+* `exit` +
+Expected result: Type 'exit' again to confirm to exit
++
+
+* `list` +
+`exit`
+Expected result: Type 'exit' again to confirm to exit
++
+
+* `exit` +
+UniCity shuts down.
+
+[NOTE]
+Only two consecutive `exit` will be able to quit UniCity.
